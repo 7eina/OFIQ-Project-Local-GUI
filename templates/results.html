@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Assessment Results</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS for Modern Look and Alternating Colors -->
+    <style>
+        body {
+            background-color: #f0f2f5; /* Pale greyish white */
+            color: #333; /* Dark grey text */
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h1 {
+            color: #0056b3; /* Deep blue for heading */
+            font-size: 2rem;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .container {
+            margin-top: 50px;
+            max-width: 900px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            color: #333;
+            font-weight: bold;
+        }
+
+        .results-table {
+            margin-top: 30px;
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #ffffff; /* White table background */
+        }
+
+        /* Table header styling */
+        .results-table th {
+            background-color: #e1e5f4ef; /* Light blue */
+            color: #545454;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Vertically center "Attribute" label */
+        .results-table th.attribute-header {
+            vertical-align: middle;
+            font-weight: bold;
+        }
+
+        /* Styling for "Raw Score" and "Scalar Score" headers with alternating background colors */
+        .results-table th.score-header {
+            color: #555; /* Dark grey */
+            font-weight: bold;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #f2f7fc; /* Light blue */
+        }
+
+        .results-table th.score-header-alt {
+            color: #555; /* Dark grey */
+            font-weight: bold;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #e9ecef; /* Light grey */
+        }
+
+        /* Alternating column shades */
+        .results-table .image-column:nth-child(odd) {
+            background-color: #f2f7fc; /* Light blue for every other column pair */
+        }
+
+        .results-table .image-column:nth-child(even) {
+            background-color: #e9ecef; /* Light grey for alternating columns */
+        }
+
+        /* Alternating row colors for readability */
+        .results-table tr:nth-child(even) td {
+            background-color: #f9f9f9; /* Light grey for every other row */
+        }
+
+        .results-table td {
+            text-align: center;
+            padding: 8px;
+            border-top: 1px solid #dee2e6;
+            color: #555;
+        }
+
+        /* Thicker grey borders between images */
+        .results-table th.image-separator-left, .results-table td.image-separator-left {
+            border-left: 2px solid #a0a0a0; /* Thicker left border for separation */
+        }
+
+        /* Horizontal line between the first, second, and third rows */
+        .results-table tr:nth-child(2) th, .results-table tr:nth-child(3) th {
+            border-bottom: 2px solid #a0a0a0; /* Thicker bottom border for separation */
+        }
+
+        .btn-primary {
+            background-color: #0056b3;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .image-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .card img {
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Quality Assessment Results</h1>
+    
+    <!-- Image Row with Cards -->
+    <div class="image-row">
+        {% for item in results %}
+            <div class="image-container">
+                <div class="card">
+                    <img src="{{ item.image_url }}" alt="{{ item.filename }}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.filename }}</h5>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-primary">Upload More Images</a>
+        <a href="/download_excel" class="btn btn-secondary">Download as Excel</a>
+    </div>
+
+    <!-- Results Table -->
+    <table class="table results-table">
+        <thead>
+            <tr>
+                <th class="attribute-header" style="vertical-align: middle;">Image</th>
+                {% for item in results %}
+                    <th colspan="2" class="image-separator-left">{{ item.filename }}</th>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th class="attribute-header">Attribute</th>
+                {% for item in results %}
+                    <th class="score-header image-separator-left">Raw Score</th>
+                    <th class="score-header-alt">Scalar Score</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in range(results[0].result | length) %}
+            <tr>
+                <td class="attribute-cell">{{ results[0].result[i].attribute }}</td>
+                {% for item in results %}
+                    <td class="image-column image-separator-left">{{ item.result[i].raw_score }}</td>
+                    <td class="image-column">{{ item.result[i].scalar_score }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>                
+    </table>
+</div>
+
+</body>
+</html>
