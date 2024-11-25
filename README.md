@@ -19,8 +19,8 @@ To use this GUI, you first need to build the OFIQ Project:
 #### Step 2: Clone This GUI Repo
 1. Open a terminal and run:
    ```bash
-   git clone https://github.com/your-username/OFIQ_GUI_Project.git
-   cd OFIQ_GUI_Project
+   git clone https://github.com/7eina/OFIQ-Project-Local-GUI.git
+   cd OFIQ-Project-Local-GUI
 
 2. Place the OFIQ-Project-main directory inside the OFIQ_GUI_Project folder so that the structure looks like this:
    ```
