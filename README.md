@@ -69,3 +69,17 @@ If you wantto distribute the GUI as a standalone executable:
     pyinstaller --onefile --add-data "templates;templates" ofiq_gui.py
 ```
 3. The executable will be located in the `dist/` folder. Distribute the executable along with instructions for users to place the `OFIQ-Project-main` directory in the same folder.
+
+#### Using the GUI
+1. Uploading Images:
+    - Select one or more facial images using the file upload button on the homepage.
+
+2. Selecting Attributes
+   - Check the attributes you want to analyze from the list provided.
+
+3. Viewing Results
+    - After processing, the results page will display each image alongside its quality scores for the selected attributes.
+
+4. Downloading Results
+   - Click the "Download Excel" button to save the results as an Excel file for further analysis.
+
