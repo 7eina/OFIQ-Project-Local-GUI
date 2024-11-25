@@ -1,7 +1,7 @@
 ## OFIQ GUI Project Overview and Instructions
 
 ### Purpose of This GUI
-The OFIQ GUI is a graphical interface created to simplify the use of the [OFIQ](https://github.com/BSI-OFIQ/OFIQ-Project) (Objective Facial Image Quality) assessment tool. OFIQ is a specialized software for assessing the quality of facial image properties and identifying potential defects. By integrating a user-friendly GUI, this project enables users to upload facial images, select desired attributes for analysis, and view/download results conveniently without the need for command-line operations.
+The OFIQ GUI is a graphical interface created to simplify the use of the [OFIQ](https://github.com/BSI-OFIQ/OFIQ-Project) (Open Source Face Image Quality) assessment tool.
 
 ### Requirements
 - Python 3.8+
