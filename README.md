@@ -25,7 +25,7 @@ To use this GUI, you first need to build the OFIQ Project:
    cd OFIQ-Project-Local-GUI
 
 3. Place the OFIQ-Project-main directory inside the OFIQ_GUI_Project folder so that the structure looks like this:
-4. 
+ 
    ```
     OFIQ_GUI_Project/
     ├── OFIQ-Project-main/
@@ -40,16 +40,16 @@ To use this GUI, you first need to build the OFIQ Project:
     ```
     python -m venv venv
 3. Activate the virtual environment:
-- On Windows
-
-   ```
-       venv\Scripts\activate
-   ```
-- On macOS/Linux
-
-  ```
-       source venv/bin/activate
-   ```
+   - On Windows
+   
+      ```
+          venv\Scripts\activate
+      ```
+   - On macOS/Linux
+   
+     ```
+          source venv/bin/activate
+      ```
 1. Install the required dependencies:
 
    ```
